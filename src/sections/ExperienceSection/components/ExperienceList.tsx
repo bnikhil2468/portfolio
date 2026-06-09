@@ -5,19 +5,19 @@ export const ExperienceList = () => {
         <div className="flex items-start justify-between gap-4">
           <div className="flex items-start gap-4 flex-1">
             <div className="box-border caret-transparent flex items-center justify-center h-12 w-12 rounded-xl shrink-0 overflow-hidden bg-white dark:bg-zinc-800">
-              <img src="/images/shopify_logo.png" alt="Shopify" className="h-full w-full object-contain" />
+              <img src="/images/nch_logo.png" alt="Nationwide Children's Hospital" className="h-full w-full object-contain" />
             </div>
             <div className="flex flex-col gap-1 flex-1">
               <h3 className="text-base font-medium box-border caret-transparent leading-6 dark:text-zinc-100">
-                Shopify
+                Nationwide Children's Hospital
               </h3>
               <p className="text-zinc-500 dark:text-zinc-400 box-border caret-transparent text-sm">
-                Engineering Intern
+                Computational Neuroscience and Neuroimaging Researcher
               </p>
             </div>
           </div>
           <div className="text-zinc-500 dark:text-zinc-400 text-sm box-border caret-transparent text-right shrink-0">
-            Incoming June 2026
+            Dec 2023 – Dec 2025
           </div>
         </div>
       </div>
@@ -26,19 +26,19 @@ export const ExperienceList = () => {
         <div className="flex items-start justify-between gap-4">
           <div className="flex items-start gap-4 flex-1">
             <div className="box-border caret-transparent flex items-center justify-center h-12 w-12 rounded-xl shrink-0 overflow-hidden bg-white dark:bg-zinc-800">
-              <img src="/images/scale.png" alt="Scale" className="h-full w-full object-contain" />
+              <img src="/images/columbia_logo.png" alt="Columbia University Medical School" className="h-full w-full object-contain" />
             </div>
             <div className="flex flex-col gap-1 flex-1">
               <h3 className="text-base font-medium box-border caret-transparent leading-6 dark:text-zinc-100">
-                Scale
+                Columbia University Medical School
               </h3>
               <p className="text-zinc-500 dark:text-zinc-400 box-border caret-transparent text-sm">
-                GenAI Intern
+                Neurobiology and Public Health Researcher
               </p>
             </div>
           </div>
           <div className="text-zinc-500 dark:text-zinc-400 text-sm box-border caret-transparent text-right shrink-0">
-            Feb 2026 - Present
+            May 2023 – Jan 2025
           </div>
         </div>
       </div>
@@ -47,19 +47,19 @@ export const ExperienceList = () => {
         <div className="flex items-start justify-between gap-4">
           <div className="flex items-start gap-4 flex-1">
             <div className="box-border caret-transparent flex items-center justify-center h-12 w-12 rounded-xl shrink-0 overflow-hidden bg-white dark:bg-zinc-800">
-              <img src="/images/anthropic_logo.png" alt="Anthropic" className="h-full w-full object-contain" />
+              <img src="/images/simplyneuroscience_logo.png" alt="Simply Neuroscience" className="h-full w-full object-contain" />
             </div>
             <div className="flex flex-col gap-1 flex-1">
               <h3 className="text-base font-medium box-border caret-transparent leading-6 dark:text-zinc-100">
-                Anthropic
+                Simply Neuroscience
               </h3>
               <p className="text-zinc-500 dark:text-zinc-400 box-border caret-transparent text-sm">
-                Claude Builder
+                Medical Cartoonist
               </p>
             </div>
           </div>
           <div className="text-zinc-500 dark:text-zinc-400 text-sm box-border caret-transparent text-right shrink-0">
-            Aug 2025 - Present
+            Nov 2023 – Present
           </div>
         </div>
       </div>
@@ -68,19 +68,19 @@ export const ExperienceList = () => {
         <div className="flex items-start justify-between gap-4">
           <div className="flex items-start gap-4 flex-1">
             <div className="box-border caret-transparent flex items-center justify-center h-12 w-12 rounded-xl shrink-0 overflow-hidden bg-white dark:bg-zinc-800">
-              <img src="/images/vertiv_logo.png" alt="Vertiv" className="h-full w-full object-contain" />
+              <img src="/images/olentangy_logo.png" alt="Olentangy Local School District" className="h-full w-full object-contain" />
             </div>
             <div className="flex flex-col gap-1 flex-1">
               <h3 className="text-base font-medium box-border caret-transparent leading-6 dark:text-zinc-100">
-                Vertiv
+                Olentangy Local School District
               </h3>
               <p className="text-zinc-500 dark:text-zinc-400 box-border caret-transparent text-sm">
-                AI Engineering Intern
+                Student Body Representative
               </p>
             </div>
           </div>
           <div className="text-zinc-500 dark:text-zinc-400 text-sm box-border caret-transparent text-right shrink-0">
-            May 2025 - Dec 2025
+            Aug 2023 – May 2026
           </div>
         </div>
       </div>
