@@ -26,7 +26,7 @@ async function getRefreshToken() {
   
   // Create authorization URL
   // Using production domain since Spotify rejects https://localhost
-  const redirectUri = 'http://172.28.190.185:5173/callback';
+  const redirectUri = 'http://127.0.0.1:5173/callback';
   const scope = 'user-read-recently-played';
   const authUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=code&redirect_uri=${encodeURIComponent(redirectUri)}&scope=${scope}`;
   

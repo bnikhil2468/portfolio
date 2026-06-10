@@ -11,7 +11,7 @@ npm run server    # Start Express backend for Spotify API (port 3001)
 npm run get-token # One-time script to get a Spotify OAuth refresh token
 ```
 
-For local development with Spotify data, both servers must run concurrently: `npm run server` in one terminal and `npm run dev` in another.
+For local development with Spotify data, both servers must run concurrently: `npm run server` in one terminal and `npm run dev` in another. `server.js` reads `SPOTIFY_CLIENT_ID`, `SPOTIFY_CLIENT_SECRET`, and `SPOTIFY_REFRESH_TOKEN` from `process.env` directly (no dotenv loader), so export a local `.env` into the shell first, e.g. `set -a && source .env && set +a && npm run server`.
 
 ## Architecture
 
@@ -36,10 +36,13 @@ App
 
 **Static assets:** Vite `publicDir` is `./static`, so files in `static/` are served from `/`. Logo images for experience cards live in `static/images/` and are referenced as `/images/<filename>`.
 
-**Spotify integration (two environments):**
-- *Local dev:* `server.js` (Express) handles `/api/spotify/recently-played`, uses env vars `SPOTIFY_CLIENT_ID`, `SPOTIFY_CLIENT_SECRET`, `SPOTIFY_REFRESH_TOKEN`. Vite proxies `/api` to port 3001.
-- *Netlify:* `netlify.toml` redirects `/api/spotify/recently-played` to `/.netlify/functions/spotify-recently-played` (serverless function, not yet in repo).
+**Spotify integration (two environments, same refresh-token logic duplicated):**
+- *Local dev:* `server.js` (Express) handles `/api/spotify/recently-played`. Vite proxies `/api` to port 3001.
+- *Netlify:* `netlify.toml` redirects `/api/spotify/recently-played` to `/.netlify/functions/spotify-recently-played`. Requires the same three `SPOTIFY_*` env vars to be set in the Netlify site's environment variables.
+- `get-spotify-token.js` (`npm run get-token`) is a one-time interactive script to mint a refresh token via the OAuth code flow, using redirect URI `http://127.0.0.1:5173/callback` (served by `public/callback.html` — but note Vite's `publicDir` is set to `./static`, so this file is not actually served; the redirect still works for copying the code from the browser's address bar even if the page itself 404s).
 
 **Dark mode:** Tailwind `darkMode: ["class"]`. The `dark` class is toggled on `<html>` by `ThemeToggle`. Use `dark:` variants for all dark-mode styles.
 
 **Content is hardcoded** — experience entries are in `ExperienceList.tsx`, projects in `ProjectGrid.tsx`, header links in `HeaderContent.tsx`. There is no CMS or data file.
+
+**TypeScript:** `tsconfig.app.json` has `strict`, `noUnusedLocals`, and `noUnusedParameters` enabled. There is no separate lint or typecheck script — `npm run build` runs Vite's build only (no `tsc` type-check step).
