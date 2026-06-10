@@ -38,7 +38,7 @@ App
 
 **Spotify integration (two environments, same refresh-token logic duplicated):**
 - *Local dev:* `server.js` (Express) handles `/api/spotify/recently-played`. Vite proxies `/api` to port 3001.
-- *Netlify:* `netlify.toml` redirects `/api/spotify/recently-played` to `/.netlify/functions/spotify-recently-played`. Requires the same three `SPOTIFY_*` env vars to be set in the Netlify site's environment variables.
+- *Production (Vercel):* `api/spotify/recently-played.js` is a Vercel serverless function (auto-routed to `/api/spotify/recently-played` by Vercel's filesystem-based API routing — no rewrite config needed). Requires the same three `SPOTIFY_*` env vars to be set in the Vercel project's environment variables.
 - `get-spotify-token.js` (`npm run get-token`) is a one-time interactive script to mint a refresh token via the OAuth code flow, using redirect URI `http://127.0.0.1:5173/callback` (served by `public/callback.html` — but note Vite's `publicDir` is set to `./static`, so this file is not actually served; the redirect still works for copying the code from the browser's address bar even if the page itself 404s).
 
 **Dark mode:** Tailwind `darkMode: ["class"]`. The `dark` class is toggled on `<html>` by `ThemeToggle`. Use `dark:` variants for all dark-mode styles.
