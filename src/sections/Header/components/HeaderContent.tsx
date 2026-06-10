@@ -8,6 +8,11 @@ export const HeaderContent = () => {
           </h1>
         </div>
         <div className="box-border caret-transparent blur-0">
+          <p className="text-zinc-500 dark:text-zinc-400 box-border caret-transparent text-sm">
+            Carpe diem.
+          </p>
+        </div>
+        <div className="box-border caret-transparent blur-0">
           <p className="box-border caret-transparent -mt-1 dark:text-zinc-300">
             Engineering and Neuroscience at{" "}
             <span className="box-border caret-transparent decoration-zinc-200 dark:decoration-zinc-600 underline">
