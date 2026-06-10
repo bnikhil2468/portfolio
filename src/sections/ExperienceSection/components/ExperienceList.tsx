@@ -4,8 +4,8 @@ export const ExperienceList = () => {
       <div className="box-border caret-transparent border border-zinc-200 dark:border-zinc-800 rounded-2xl p-4 hover:border-zinc-300 dark:hover:border-zinc-700 transition-colors max-w-2xl bg-white/50 dark:bg-zinc-900/50">
         <div className="flex items-start justify-between gap-4">
           <div className="flex items-start gap-4 flex-1">
-            <div className="box-border caret-transparent flex items-center justify-center h-12 w-12 rounded-xl shrink-0 overflow-hidden bg-white dark:bg-zinc-800">
-              <img src="/images/nch_logo.png" alt="Nationwide Children's Hospital" className="h-full w-full object-contain" />
+            <div className="box-border caret-transparent flex items-center justify-center h-16 w-16 rounded-xl shrink-0 overflow-hidden border border-zinc-200 dark:border-zinc-700 shadow-sm hover:scale-110 transition-transform">
+              <img src="/images/nch.png" alt="Nationwide Children's Hospital" className="h-full w-full object-cover" />
             </div>
             <div className="flex flex-col gap-1 flex-1">
               <h3 className="text-base font-medium box-border caret-transparent leading-6 dark:text-zinc-100">
@@ -25,8 +25,8 @@ export const ExperienceList = () => {
       <div className="box-border caret-transparent border border-zinc-200 dark:border-zinc-800 rounded-2xl p-4 hover:border-zinc-300 dark:hover:border-zinc-700 transition-colors max-w-2xl bg-white/50 dark:bg-zinc-900/50">
         <div className="flex items-start justify-between gap-4">
           <div className="flex items-start gap-4 flex-1">
-            <div className="box-border caret-transparent flex items-center justify-center h-12 w-12 rounded-xl shrink-0 overflow-hidden bg-white dark:bg-zinc-800">
-              <img src="/images/columbia_logo.png" alt="Columbia University Medical School" className="h-full w-full object-contain" />
+            <div className="box-border caret-transparent flex items-center justify-center h-16 w-16 rounded-xl shrink-0 overflow-hidden border border-zinc-200 dark:border-zinc-700 shadow-sm hover:scale-110 transition-transform">
+              <img src="/images/columbia.png" alt="Columbia University Medical School" className="h-full w-full object-cover" />
             </div>
             <div className="flex flex-col gap-1 flex-1">
               <h3 className="text-base font-medium box-border caret-transparent leading-6 dark:text-zinc-100">
@@ -46,8 +46,8 @@ export const ExperienceList = () => {
       <div className="box-border caret-transparent border border-zinc-200 dark:border-zinc-800 rounded-2xl p-4 hover:border-zinc-300 dark:hover:border-zinc-700 transition-colors max-w-2xl bg-white/50 dark:bg-zinc-900/50">
         <div className="flex items-start justify-between gap-4">
           <div className="flex items-start gap-4 flex-1">
-            <div className="box-border caret-transparent flex items-center justify-center h-12 w-12 rounded-xl shrink-0 overflow-hidden bg-white dark:bg-zinc-800">
-              <img src="/images/simplyneuroscience_logo.png" alt="Simply Neuroscience" className="h-full w-full object-contain" />
+            <div className="box-border caret-transparent flex items-center justify-center h-16 w-16 rounded-xl shrink-0 overflow-hidden border border-zinc-200 dark:border-zinc-700 shadow-sm hover:scale-110 transition-transform">
+              <img src="/images/simply-neuro.png" alt="Simply Neuroscience" className="h-full w-full object-cover" />
             </div>
             <div className="flex flex-col gap-1 flex-1">
               <h3 className="text-base font-medium box-border caret-transparent leading-6 dark:text-zinc-100">
@@ -67,8 +67,8 @@ export const ExperienceList = () => {
       <div className="box-border caret-transparent border border-zinc-200 dark:border-zinc-800 rounded-2xl p-4 hover:border-zinc-300 dark:hover:border-zinc-700 transition-colors max-w-2xl bg-white/50 dark:bg-zinc-900/50">
         <div className="flex items-start justify-between gap-4">
           <div className="flex items-start gap-4 flex-1">
-            <div className="box-border caret-transparent flex items-center justify-center h-12 w-12 rounded-xl shrink-0 overflow-hidden bg-white dark:bg-zinc-800">
-              <img src="/images/olentangy_logo.png" alt="Olentangy Local School District" className="h-full w-full object-contain" />
+            <div className="box-border caret-transparent flex items-center justify-center h-16 w-16 rounded-xl shrink-0 overflow-hidden border border-zinc-200 dark:border-zinc-700 shadow-sm hover:scale-110 transition-transform">
+              <img src="/images/olsd.png" alt="Olentangy Local School District" className="h-full w-full object-cover" />
             </div>
             <div className="flex flex-col gap-1 flex-1">
               <h3 className="text-base font-medium box-border caret-transparent leading-6 dark:text-zinc-100">

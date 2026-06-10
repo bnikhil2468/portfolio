@@ -28,7 +28,7 @@ export const MusicSection = () => {
             Music
           </div>
           <p className="text-zinc-500 box-border caret-transparent">
-            I enjoy R&B the most, as well as Hip Hop and Jazz. These are my recents.
+            I like all types of music. These are my recents.
           </p>
         </div>
         <div className="text-zinc-400 text-sm whitespace-nowrap">
