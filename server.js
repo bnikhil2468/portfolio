@@ -47,27 +47,27 @@ async function getAccessToken() {
   return accessToken;
 }
 
-// API endpoint to get recently played tracks
-app.get('/api/spotify/recently-played', async (req, res) => {
+// API endpoint to get top tracks
+app.get('/api/spotify/top-tracks', async (req, res) => {
   try {
     const limit = parseInt(req.query.limit) || 6;
     const token = await getAccessToken();
 
-    const response = await fetch(`https://api.spotify.com/v1/me/player/recently-played?limit=${limit}`, {
+    const response = await fetch(`https://api.spotify.com/v1/me/top/tracks?time_range=short_term&limit=${limit}`, {
       headers: {
         'Authorization': `Bearer ${token}`,
       },
     });
 
     if (!response.ok) {
-      throw new Error('Failed to fetch recently played tracks');
+      throw new Error('Failed to fetch top tracks');
     }
 
     const data = await response.json();
     res.json(data);
   } catch (error) {
-    console.error('Error fetching recently played tracks:', error);
-    res.status(500).json({ error: 'Failed to fetch recently played tracks' });
+    console.error('Error fetching top tracks:', error);
+    res.status(500).json({ error: 'Failed to fetch top tracks' });
   }
 });
 

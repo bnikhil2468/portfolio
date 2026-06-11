@@ -36,7 +36,7 @@ export default async function handler(req, res) {
 
     const { access_token } = await tokenResponse.json();
 
-    const tracksResponse = await fetch(`https://api.spotify.com/v1/me/player/recently-played?limit=${limit}`, {
+    const tracksResponse = await fetch(`https://api.spotify.com/v1/me/top/tracks?time_range=short_term&limit=${limit}`, {
       headers: {
         'Authorization': `Bearer ${access_token}`,
       },
@@ -44,8 +44,8 @@ export default async function handler(req, res) {
 
     if (!tracksResponse.ok) {
       const error = await tracksResponse.text();
-      console.error('Failed to fetch recently played tracks:', error);
-      res.status(500).json({ error: 'Failed to fetch recently played tracks' });
+      console.error('Failed to fetch top tracks:', error);
+      res.status(500).json({ error: 'Failed to fetch top tracks' });
       return;
     }
 

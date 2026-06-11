@@ -1,38 +1,24 @@
 import { useEffect, useState } from "react";
-import { fetchRecentlyPlayedTracks, SpotifyTrack } from "@/services/spotify";
+import { fetchTopTracks, SpotifyTrack } from "@/services/spotify";
 
-interface SpotifyTracksProps {
-  onTracksLoaded?: (lastUpdated: Date | null) => void;
-}
-
-export const SpotifyTracks = ({ onTracksLoaded }: SpotifyTracksProps) => {
+export const SpotifyTracks = () => {
   const [tracks, setTracks] = useState<SpotifyTrack[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const loadTracks = async () => {
       setLoading(true);
-      const data = await fetchRecentlyPlayedTracks(12);
+      const data = await fetchTopTracks(6);
       setTracks(data);
-      
-      // Find the most recent track's played_at timestamp
-      const lastUpdated = data.length > 0 && data[0].played_at 
-        ? new Date(data[0].played_at) 
-        : null;
-      
-      if (onTracksLoaded) {
-        onTracksLoaded(lastUpdated);
-      }
-      
       setLoading(false);
     };
     loadTracks();
-  }, [onTracksLoaded]);
+  }, []);
 
   if (loading) {
     return (
       <div className="box-border caret-transparent gap-x-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-y-6 mt-4">
-        <div className="text-zinc-500 text-sm col-span-full">Loading recent tracks...</div>
+        <div className="text-zinc-500 text-sm col-span-full">Loading top tracks...</div>
       </div>
     );
   }
@@ -40,7 +26,7 @@ export const SpotifyTracks = ({ onTracksLoaded }: SpotifyTracksProps) => {
   if (tracks.length === 0) {
     return (
       <div className="box-border caret-transparent gap-x-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-y-6 mt-4">
-        <div className="text-zinc-500 text-sm col-span-full">No recent tracks available</div>
+        <div className="text-zinc-500 text-sm col-span-full">No top tracks available</div>
       </div>
     );
   }

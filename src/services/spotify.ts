@@ -9,29 +9,22 @@ export interface SpotifyTrack {
   external_urls: {
     spotify: string;
   };
-  played_at?: string;
 }
 
-export interface SpotifyRecentlyPlayedResponse {
-  items: Array<{
-    track: SpotifyTrack;
-    played_at: string;
-  }>;
+export interface SpotifyTopTracksResponse {
+  items: SpotifyTrack[];
 }
 
-export const fetchRecentlyPlayedTracks = async (limit: number = 6): Promise<SpotifyTrack[]> => {
+export const fetchTopTracks = async (limit: number = 6): Promise<SpotifyTrack[]> => {
   try {
-    const response = await fetch(`/api/spotify/recently-played?limit=${limit}`);
+    const response = await fetch(`/api/spotify/top-tracks?limit=${limit}`);
     if (!response.ok) {
-      throw new Error('Failed to fetch recently played tracks');
+      throw new Error('Failed to fetch top tracks');
     }
-    const data: SpotifyRecentlyPlayedResponse = await response.json();
-    return data.items.map(item => ({
-      ...item.track,
-      played_at: item.played_at,
-    }));
+    const data: SpotifyTopTracksResponse = await response.json();
+    return data.items;
   } catch (error) {
-    console.error('Error fetching Spotify tracks:', error);
+    console.error('Error fetching Spotify top tracks:', error);
     return [];
   }
 };
