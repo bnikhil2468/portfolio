@@ -12,7 +12,7 @@ export const StatusList = () => {
             href="https://www.brown.edu/academics/liberal-medical-education/"
             className="box-border caret-transparent decoration-emerald-400 underline"
           >
-            Brown University
+            Brown University (PLME)
           </a>
           , Fall 2026.
         </p>
