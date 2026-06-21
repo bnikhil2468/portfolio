@@ -28,7 +28,7 @@ App
 │   ├── Header           # name, tagline, social links
 │   ├── ExperienceSection → ExperienceList   # hardcoded experience cards with logo images
 │   ├── EngineeringSection → ProjectGrid     # hardcoded project cards
-│   └── MusicSection → SpotifyTracks        # fetches from /api/spotify/recently-played
+│   └── MusicSection → SpotifyTracks        # fetches top 6 tracks from /api/spotify/top-tracks
 └── Footer
 ```
 
@@ -37,8 +37,9 @@ App
 **Static assets:** Vite `publicDir` is `./static`, so files in `static/` are served from `/`. Logo images for experience cards live in `static/images/` and are referenced as `/images/<filename>`.
 
 **Spotify integration (two environments, same refresh-token logic duplicated):**
-- *Local dev:* `server.js` (Express) handles `/api/spotify/recently-played`. Vite proxies `/api` to port 3001.
-- *Production (Vercel):* `api/spotify/recently-played.js` is a Vercel serverless function (auto-routed to `/api/spotify/recently-played` by Vercel's filesystem-based API routing — no rewrite config needed). Requires the same three `SPOTIFY_*` env vars to be set in the Vercel project's environment variables.
+- *Local dev:* `server.js` (Express) handles `/api/spotify/top-tracks`, calling `https://api.spotify.com/v1/me/top/tracks?time_range=short_term&limit=6`. Vite proxies `/api` to port 3001.
+- *Production (Vercel):* `api/spotify/top-tracks.js` is a Vercel serverless function (auto-routed to `/api/spotify/top-tracks` by Vercel's filesystem-based API routing — no rewrite config needed). Requires the same three `SPOTIFY_*` env vars to be set in the Vercel project's environment variables.
+- The refresh token must be authorized with the `user-top-read` scope (not `user-read-recently-played`) — the top tracks endpoint returns 403 "Insufficient client scope" otherwise.
 - `get-spotify-token.js` (`npm run get-token`) is a one-time interactive script to mint a refresh token via the OAuth code flow, using redirect URI `http://127.0.0.1:5173/callback` (served by `public/callback.html` — but note Vite's `publicDir` is set to `./static`, so this file is not actually served; the redirect still works for copying the code from the browser's address bar even if the page itself 404s).
 
 **Dark mode:** Tailwind `darkMode: ["class"]`. The `dark` class is toggled on `<html>` by `ThemeToggle`. Use `dark:` variants for all dark-mode styles.

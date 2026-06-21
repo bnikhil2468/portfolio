@@ -2,7 +2,7 @@
   "version": "1.0.0",
   "source": "./index.html",
   "type": "module",
-  "name": "nimaiportfoliov2",
+  "name": "nikhilportfoliov2",
   "description": "Nimai's Portfolio",
   "scripts": {
     "dev": "vite",
