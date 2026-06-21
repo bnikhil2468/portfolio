@@ -9,10 +9,10 @@ export const StatusList = () => {
         <p className="box-border caret-transparent">
           Incoming PLME student at{" "}
           <a
-            href="https://www.stanford.edu/"
+            href="https://www.brown.edu/academics/liberal-medical-education/"
             className="box-border caret-transparent decoration-emerald-400 underline"
           >
-            Stanford University
+            Brown University
           </a>
           , Fall 2026.
         </p>
