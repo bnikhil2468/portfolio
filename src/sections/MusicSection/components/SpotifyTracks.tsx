@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
 import { fetchTopTracks, SpotifyTrack } from "@/services/spotify";
 
-export const SpotifyTracks = () => {
+interface SpotifyTracksProps {
+  onLoaded?: (date: Date) => void;
+}
+
+export const SpotifyTracks = ({ onLoaded }: SpotifyTracksProps) => {
   const [tracks, setTracks] = useState<SpotifyTrack[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -11,6 +15,7 @@ export const SpotifyTracks = () => {
       const data = await fetchTopTracks(6);
       setTracks(data);
       setLoading(false);
+      onLoaded?.(new Date());
     };
     loadTracks();
   }, []);
