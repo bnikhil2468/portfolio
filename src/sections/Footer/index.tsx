@@ -26,7 +26,7 @@ export const Footer = () => {
     <footer className="w-full mt-24">
       <div className="flex items-center justify-between mx-auto max-w-lg md:max-w-4xl px-4 py-4">
         <p className="text-sm text-zinc-400">
-          Everything around me is someone's life work
+          Carpe diem.
         </p>
         <div className="flex items-center gap-2 text-sm text-zinc-400">
           <span>{time.getFullYear()}</span>
