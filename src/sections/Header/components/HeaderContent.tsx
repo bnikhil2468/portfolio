@@ -10,9 +10,14 @@ export const HeaderContent = () => {
 <div className="box-border caret-transparent blur-0">
           <p className="box-border caret-transparent -mt-1 dark:text-zinc-300">
             Engineering and Neuroscience at{" "}
-            <span className="box-border caret-transparent decoration-zinc-200 dark:decoration-zinc-600 underline">
+            <a
+              href="https://plme.med.brown.edu/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="box-border caret-transparent decoration-zinc-200 dark:decoration-zinc-600 underline hover:text-zinc-600 dark:hover:text-zinc-100"
+            >
               Brown University (PLME).
-            </span>
+            </a>
           </p>
         </div>
       </div>
