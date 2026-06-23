@@ -5,31 +5,43 @@ const ProjectCard = ({
   description,
   className = "",
 }: {
-  href: string;
+  href?: string;
   image: string;
   title: string;
   description: string;
   className?: string;
-}) => (
-  <div className={`box-border caret-transparent blur-0 ${className}`}>
-    <div className="box-border caret-transparent flex flex-col">
-      <a
-        href={href}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="aspect-video box-border caret-transparent block overflow-hidden mb-3 rounded-lg bg-zinc-200 dark:bg-zinc-800 cursor-pointer group"
-      >
-        <img
-          src={image}
-          alt={title}
-          className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-        />
-      </a>
-      <div className="font-medium box-border caret-transparent mb-1">{title}</div>
-      <p className="text-zinc-500 box-border caret-transparent leading-5">{description}</p>
+}) => {
+  const imageEl = (
+    <img
+      src={image}
+      alt={title}
+      className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+    />
+  );
+
+  return (
+    <div className={`box-border caret-transparent blur-0 ${className}`}>
+      <div className="box-border caret-transparent flex flex-col">
+        {href ? (
+          <a
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="aspect-video box-border caret-transparent block overflow-hidden mb-3 rounded-lg bg-zinc-200 dark:bg-zinc-800 cursor-pointer group"
+          >
+            {imageEl}
+          </a>
+        ) : (
+          <div className="aspect-video box-border caret-transparent block overflow-hidden mb-3 rounded-lg bg-zinc-200 dark:bg-zinc-800">
+            {imageEl}
+          </div>
+        )}
+        <div className="font-medium box-border caret-transparent mb-1">{title}</div>
+        <p className="text-zinc-500 box-border caret-transparent leading-5">{description}</p>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export const ProjectGrid = () => {
   return (
@@ -41,7 +53,6 @@ export const ProjectGrid = () => {
         description="Patented neuroimaging cap designed for darker skin tones and textured hair. Reduced unit cost from $500+ to $10 and setup time from 30 min to 30 sec."
       />
       <ProjectCard
-        href="#"
         image="/images/projects/scent.png"
         title="SCENT"
         description="Handheld breath analyzer using gas sensors and ML to detect VOC biomarker patterns for early-stage disease screening. 1st Place, Open Track at OSU Make OHI/O (Mar 2026)."
