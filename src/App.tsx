@@ -10,7 +10,6 @@ export const App = () => {
       <ThemeToggle />
       <Container />
       <Footer />
-      <div className="absolute box-border caret-transparent block"></div>
     </body>
   );
 };

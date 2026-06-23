@@ -13,26 +13,20 @@ const ProjectCard = ({
 }) => (
   <div className={`box-border caret-transparent blur-0 ${className}`}>
     <div className="box-border caret-transparent flex flex-col">
-      <div className="box-border caret-transparent flex flex-col">
-        <a
-          href={href}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="aspect-video box-border caret-transparent block overflow-hidden mb-3 rounded-lg bg-zinc-200 dark:bg-zinc-800 cursor-pointer group"
-        >
-          <img
-            src={image}
-            alt={title}
-            className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-          />
-        </a>
-        <div className="relative font-medium items-baseline box-border caret-transparent flex justify-between mb-1">
-          <div className="relative box-border caret-transparent block">{title}</div>
-        </div>
-      </div>
-      <div className="text-zinc-500 box-border caret-transparent leading-[19.2px] max-w-[687.441px]">
-        <p className="box-border caret-transparent">{description}</p>
-      </div>
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="aspect-video box-border caret-transparent block overflow-hidden mb-3 rounded-lg bg-zinc-200 dark:bg-zinc-800 cursor-pointer group"
+      >
+        <img
+          src={image}
+          alt={title}
+          className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+        />
+      </a>
+      <div className="font-medium box-border caret-transparent mb-1">{title}</div>
+      <p className="text-zinc-500 box-border caret-transparent leading-5">{description}</p>
     </div>
   </div>
 );

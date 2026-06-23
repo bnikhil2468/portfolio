@@ -2,7 +2,7 @@ import { ProjectGrid } from "@/sections/EngineeringSection/components/ProjectGri
 
 export const EngineeringSection = () => {
   return (
-    <div className="box-border caret-transparent blur-0 mt-2">
+    <div className="box-border caret-transparent blur-0">
       <h2 className="text-lg font-medium box-border caret-transparent leading-7 dark:text-zinc-50">
         Projects
       </h2>
