@@ -11,7 +11,11 @@ npm run server    # Start Express backend for Spotify API (port 3001)
 npm run get-token # One-time script to get a Spotify OAuth refresh token
 ```
 
-For local development with Spotify data, both servers must run concurrently: `npm run server` in one terminal and `npm run dev` in another. `server.js` reads `SPOTIFY_CLIENT_ID`, `SPOTIFY_CLIENT_SECRET`, and `SPOTIFY_REFRESH_TOKEN` from `process.env` directly (no dotenv loader), so export a local `.env` into the shell first, e.g. `set -a && source .env && set +a && npm run server`.
+For local development with Spotify data, both servers must run concurrently: `npm run server` in one terminal and `npm run dev` in another. `server.js` reads `SPOTIFY_CLIENT_ID`, `SPOTIFY_CLIENT_SECRET`, and `SPOTIFY_REFRESH_TOKEN` from `process.env` directly (no dotenv loader), so export a local `.env` into the shell first: `set -a && source .env && set +a && npm run server`.
+
+## Git
+
+This repo lives inside a parent directory (`Nikhil Portfolio/`) that is itself a git repo, making this an embedded/nested git repo. Always run git commands from inside `nikhilportfoliov2/` — the remote at `https://github.com/bnikhil2468/portfolio.git` is on this inner repo.
 
 ## Architecture
 
@@ -19,31 +23,36 @@ Single-page portfolio app — no routing, no tests, no linting config.
 
 **Frontend:** React 18 + TypeScript + Tailwind CSS, bundled by Vite. Entry: `src/index.tsx` → `src/App.tsx`.
 
-**Layout hierarchy:**
+**Rendered layout hierarchy:**
 ```
 App
 ├── GridBackground       # decorative CSS grid overlay
-├── ThemeToggle          # fixed top-right button; persists to localStorage, toggles `dark` class on <html>
+├── ThemeToggle          # fixed top-right; persists to localStorage, toggles `dark` class on <html>
 ├── Container → ContentWrapper
-│   ├── Header           # name, tagline, social links
-│   ├── ExperienceSection → ExperienceList   # hardcoded experience cards with logo images
-│   ├── EngineeringSection → ProjectGrid     # hardcoded project cards
-│   └── MusicSection → SpotifyTracks        # fetches top 6 tracks from /api/spotify/top-tracks
-└── Footer
+│   ├── Header → HeaderContent          # name + social links
+│   ├── ExperienceSection → ExperienceList   # hardcoded cards with logo images
+│   ├── EngineeringSection → ProjectGrid     # hardcoded project cards (labeled "Projects" in UI)
+│   └── MusicSection → SpotifyTracks        # fetches top 6 tracks; shows "Last at MM/DD, H:MM AM/PM" timestamp on load
+└── Footer               # "Carpe diem." on left, live analog clock + year on right
 ```
+
+**Dead sections (exist in `src/sections/` but not imported in ContentWrapper):**
+- `NowSection` — green/blue/violet status dots with current activities
+- `ExperimentsSection` — grid of side-project links
 
 **Path alias:** `@/` resolves to `src/` (configured in both `vite.config.ts` and `tsconfig.app.json`).
 
-**Static assets:** Vite `publicDir` is `./static`, so files in `static/` are served from `/`. Logo images for experience cards live in `static/images/` and are referenced as `/images/<filename>`.
+**Static assets:** Vite `publicDir` is `./static`, so files in `static/` are served from `/`. Logo images for experience cards are in `static/images/`; project images are in `static/images/projects/`.
 
-**Spotify integration (two environments, same refresh-token logic duplicated):**
-- *Local dev:* `server.js` (Express) handles `/api/spotify/top-tracks`, calling `https://api.spotify.com/v1/me/top/tracks?time_range=short_term&limit=6`. Vite proxies `/api` to port 3001.
-- *Production (Vercel):* `api/spotify/top-tracks.js` is a Vercel serverless function (auto-routed to `/api/spotify/top-tracks` by Vercel's filesystem-based API routing — no rewrite config needed). Requires the same three `SPOTIFY_*` env vars to be set in the Vercel project's environment variables.
-- The refresh token must be authorized with the `user-top-read` scope (not `user-read-recently-played`) — the top tracks endpoint returns 403 "Insufficient client scope" otherwise.
-- `get-spotify-token.js` (`npm run get-token`) is a one-time interactive script to mint a refresh token via the OAuth code flow, using redirect URI `http://127.0.0.1:5173/callback` (served by `public/callback.html` — but note Vite's `publicDir` is set to `./static`, so this file is not actually served; the redirect still works for copying the code from the browser's address bar even if the page itself 404s).
+**Content is hardcoded** — experience entries in `ExperienceList.tsx`, projects in `ProjectGrid.tsx`, header links in `HeaderContent.tsx`. No CMS or data file.
 
 **Dark mode:** Tailwind `darkMode: ["class"]`. The `dark` class is toggled on `<html>` by `ThemeToggle`. Use `dark:` variants for all dark-mode styles.
 
-**Content is hardcoded** — experience entries are in `ExperienceList.tsx`, projects in `ProjectGrid.tsx`, header links in `HeaderContent.tsx`. There is no CMS or data file.
+**MusicSection timestamp pattern:** `SpotifyTracks` accepts an `onLoaded?: (date: Date) => void` prop. `MusicSection` passes `setLastUpdated` as that callback and formats the date in the header row once tracks load.
 
-**TypeScript:** `tsconfig.app.json` has `strict`, `noUnusedLocals`, and `noUnusedParameters` enabled. There is no separate lint or typecheck script — `npm run build` runs Vite's build only (no `tsc` type-check step).
+**Spotify integration (two environments, same refresh-token logic duplicated):**
+- *Local dev:* `server.js` (Express) at port 3001, proxied via Vite.
+- *Production (Vercel):* `api/spotify/top-tracks.js` is a Vercel serverless function — auto-routed by filesystem, no rewrite config needed. Requires `SPOTIFY_CLIENT_ID`, `SPOTIFY_CLIENT_SECRET`, `SPOTIFY_REFRESH_TOKEN` in Vercel env vars.
+- Refresh token needs `user-top-read` scope; `user-read-recently-played` returns 403.
+
+**TypeScript:** `tsconfig.app.json` has `strict`, `noUnusedLocals`, and `noUnusedParameters`. No separate typecheck script — `npm run build` runs Vite only (no `tsc` step).
