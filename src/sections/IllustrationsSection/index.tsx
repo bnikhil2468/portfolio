@@ -16,7 +16,7 @@ export const IllustrationsSection = () => {
         Medical Illustrations
       </h2>
       <p className="text-zinc-500 dark:text-zinc-400 box-border caret-transparent mb-4">
-        A few of my medical illustrations, created in collaboration with hospitals and patients at the VA, aimed at breaking down complex healthcare concepts and procedures to improve patient understanding in medicine.
+        A few of my medical illustrations, created in collaboration with hospitals and patients at the VA, aimed at breaking down complex healthcare concepts and procedures to improve patient understanding in medicine. Each illustration is translated into over 14 languages to reach patients across diverse communities.
       </p>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {illustrations.map((ill) => (
