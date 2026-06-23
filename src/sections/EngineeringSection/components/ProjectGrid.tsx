@@ -32,7 +32,7 @@ const ProjectCard = ({
             {imageEl}
           </a>
         ) : (
-          <div className="aspect-video box-border caret-transparent block overflow-hidden mb-3 rounded-lg bg-zinc-200 dark:bg-zinc-800">
+          <div className="aspect-video box-border caret-transparent block overflow-hidden mb-3 rounded-lg bg-zinc-200 dark:bg-zinc-800 group">
             {imageEl}
           </div>
         )}
