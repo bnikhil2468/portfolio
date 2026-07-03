@@ -22,20 +22,9 @@ const ProjectCard = ({
   return (
     <div className={`box-border caret-transparent blur-0 ${className}`}>
       <div className="box-border caret-transparent flex flex-col">
-        {href ? (
-          <a
-            href={href}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="aspect-video box-border caret-transparent block overflow-hidden mb-3 rounded-lg bg-zinc-200 dark:bg-zinc-800 cursor-pointer group"
-          >
-            {imageEl}
-          </a>
-        ) : (
-          <div className="aspect-video box-border caret-transparent block overflow-hidden mb-3 rounded-lg bg-zinc-200 dark:bg-zinc-800 group">
-            {imageEl}
-          </div>
-        )}
+        <div className="aspect-video box-border caret-transparent block overflow-hidden mb-3 rounded-lg bg-zinc-200 dark:bg-zinc-800 group">
+          {imageEl}
+        </div>
         <div className="font-medium box-border caret-transparent mb-1">{title}</div>
         <p className="text-zinc-500 box-border caret-transparent leading-5">{description}</p>
       </div>
@@ -73,7 +62,7 @@ export const ProjectGrid = () => {
         href="https://github.com/Shubham-Gupta-coder/sheruta"
         image="/images/projects/sheruta.png"
         title="Sheruta.space"
-        description="First integrated mental wellness platform for the Olentangy School District — AI-powered emotional support, journaling, mood tracking, and direct counselor access. 20,000+ users in pilot testing."
+        description="First integrated mental wellness platform for the Olentangy School District. AI-powered emotional support, journaling, mood tracking, and direct counselor access. 20,000+ users in pilot testing."
         className="md:col-span-2 md:max-w-[calc(50%-0.75rem)] md:mx-auto"
       />
     </div>
