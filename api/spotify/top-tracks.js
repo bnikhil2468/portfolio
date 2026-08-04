@@ -4,6 +4,8 @@ const SOUTH_ASIAN_GENRE_KEYWORDS = [
   'tamil', 'telugu', 'hindi', 'bengali', 'gujarati', 'marathi',
   'kannada', 'malayalam', 'hindustani', 'carnatic', 'ghazal',
   'qawwali', 'bhojpuri', 'kollywood', 'tollywood',
+  'south indian', 'desi pop', 'desi trap', 'desi hip hop',
+  'tamil pop', 'telugu pop', 'hindi pop', 'hindi indie',
 ];
 
 // Devanagari, Bengali, Gurmukhi, Gujarati, Oriya, Tamil, Telugu, Kannada, Malayalam, Sinhala
@@ -14,8 +16,12 @@ function isSouthAsianTrack(track, genreMap) {
     const genres = genreMap[a.id] || [];
     return genres.some(g => SOUTH_ASIAN_GENRE_KEYWORDS.some(kw => g.toLowerCase().includes(kw)));
   })) return true;
-  if (SOUTH_ASIAN_SCRIPT_RE.test(track.name)) return true;
-  if (track.artists.some(a => SOUTH_ASIAN_SCRIPT_RE.test(a.name))) return true;
+  const textsToCheck = [
+    track.name,
+    track.album.name,
+    ...track.artists.map(a => a.name),
+  ];
+  if (textsToCheck.some(t => SOUTH_ASIAN_SCRIPT_RE.test(t))) return true;
   return false;
 }
 
