@@ -6,10 +6,17 @@ const SOUTH_ASIAN_GENRE_KEYWORDS = [
   'qawwali', 'bhojpuri', 'kollywood', 'tollywood',
 ];
 
-function hasSouthAsianGenre(genres) {
-  return genres.some(g =>
-    SOUTH_ASIAN_GENRE_KEYWORDS.some(kw => g.toLowerCase().includes(kw))
-  );
+// Devanagari, Bengali, Gurmukhi, Gujarati, Oriya, Tamil, Telugu, Kannada, Malayalam, Sinhala
+const SOUTH_ASIAN_SCRIPT_RE = /[ऀ-෿]/;
+
+function isSouthAsianTrack(track, genreMap) {
+  if (track.artists.some(a => {
+    const genres = genreMap[a.id] || [];
+    return genres.some(g => SOUTH_ASIAN_GENRE_KEYWORDS.some(kw => g.toLowerCase().includes(kw)));
+  })) return true;
+  if (SOUTH_ASIAN_SCRIPT_RE.test(track.name)) return true;
+  if (track.artists.some(a => SOUTH_ASIAN_SCRIPT_RE.test(a.name))) return true;
+  return false;
 }
 
 export default async function handler(req, res) {
@@ -83,7 +90,7 @@ export default async function handler(req, res) {
     }
 
     const filtered = tracks
-      .filter(track => !track.artists.some(a => hasSouthAsianGenre(genreMap[a.id] || [])))
+      .filter(track => !isSouthAsianTrack(track, genreMap))
       .slice(0, limit);
 
     res.status(200).json({ ...tracksData, items: filtered });
