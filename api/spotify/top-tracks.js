@@ -1,4 +1,17 @@
 // Vercel serverless function for Spotify API
+const SOUTH_ASIAN_GENRE_KEYWORDS = [
+  'bollywood', 'filmi', 'desi', 'indian', 'punjabi', 'bhangra',
+  'tamil', 'telugu', 'hindi', 'bengali', 'gujarati', 'marathi',
+  'kannada', 'malayalam', 'hindustani', 'carnatic', 'ghazal',
+  'qawwali', 'bhojpuri', 'kollywood', 'tollywood',
+];
+
+function hasSouthAsianGenre(genres) {
+  return genres.some(g =>
+    SOUTH_ASIAN_GENRE_KEYWORDS.some(kw => g.toLowerCase().includes(kw))
+  );
+}
+
 export default async function handler(req, res) {
   if (req.method !== 'GET') {
     res.status(405).json({ error: 'Method not allowed' });
@@ -12,7 +25,9 @@ export default async function handler(req, res) {
     return;
   }
 
-  const limit = req.query.limit || '6';
+  const limit = parseInt(req.query.limit) || 6;
+  // Fetch a larger pool so we still have enough tracks after filtering
+  const fetchLimit = Math.min(limit * 8, 50);
 
   try {
     const tokenResponse = await fetch('https://accounts.spotify.com/api/token', {
@@ -36,7 +51,7 @@ export default async function handler(req, res) {
 
     const { access_token } = await tokenResponse.json();
 
-    const tracksResponse = await fetch(`https://api.spotify.com/v1/me/top/tracks?time_range=short_term&limit=${limit}`, {
+    const tracksResponse = await fetch(`https://api.spotify.com/v1/me/top/tracks?time_range=short_term&limit=${fetchLimit}`, {
       headers: {
         'Authorization': `Bearer ${access_token}`,
       },
@@ -50,7 +65,28 @@ export default async function handler(req, res) {
     }
 
     const tracksData = await tracksResponse.json();
-    res.status(200).json(tracksData);
+    const tracks = tracksData.items || [];
+
+    // Collect unique artist IDs (Spotify artists endpoint accepts up to 50)
+    const artistIds = [...new Set(tracks.flatMap(t => t.artists.map(a => a.id)))].slice(0, 50);
+
+    const artistsResponse = await fetch(`https://api.spotify.com/v1/artists?ids=${artistIds.join(',')}`, {
+      headers: { 'Authorization': `Bearer ${access_token}` },
+    });
+
+    const genreMap = {};
+    if (artistsResponse.ok) {
+      const artistsData = await artistsResponse.json();
+      for (const artist of artistsData.artists || []) {
+        genreMap[artist.id] = artist.genres || [];
+      }
+    }
+
+    const filtered = tracks
+      .filter(track => !track.artists.some(a => hasSouthAsianGenre(genreMap[a.id] || [])))
+      .slice(0, limit);
+
+    res.status(200).json({ ...tracksData, items: filtered });
   } catch (error) {
     console.error('Error:', error);
     res.status(500).json({ error: error.message });
