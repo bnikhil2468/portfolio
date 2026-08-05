@@ -1,28 +1,29 @@
 // Vercel serverless function for Spotify API
-const SOUTH_ASIAN_GENRE_KEYWORDS = [
-  'bollywood', 'filmi', 'desi', 'indian', 'punjabi', 'bhangra',
-  'tamil', 'telugu', 'hindi', 'bengali', 'gujarati', 'marathi',
-  'kannada', 'malayalam', 'hindustani', 'carnatic', 'ghazal',
-  'qawwali', 'bhojpuri', 'kollywood', 'tollywood',
-  'south indian', 'desi pop', 'desi trap', 'desi hip hop',
-  'tamil pop', 'telugu pop', 'hindi pop', 'hindi indie',
+// Spotify genre labels for Hindi, Tamil, and Telugu songs
+const BLOCKED_GENRE_KEYWORDS = [
+  // Hindi / Bollywood
+  'bollywood', 'filmi', 'hindi', 'hindustani', 'bhojpuri',
+  'desi pop', 'desi trap', 'desi hip hop', 'ghazal', 'qawwali',
+  // Tamil / Kollywood
+  'kollywood', 'tamil', 'carnatic',
+  // Telugu / Tollywood
+  'tollywood', 'telugu',
 ];
 
-// Devanagari, Bengali, Gurmukhi, Gujarati, Oriya, Tamil, Telugu, Kannada, Malayalam, Sinhala
-const SOUTH_ASIAN_SCRIPT_RE = /[ऀ-෿]/;
+// Devanagari (Hindi U+0900–U+097F), Tamil (U+0B80–U+0BFF), Telugu (U+0C00–U+0C7F)
+const HINDI_TAMIL_TELUGU_SCRIPT_RE = /[ऀ-ॿ஀-௿ఀ-౿]/;
 
-function isSouthAsianTrack(track, genreMap) {
+function isBlockedTrack(track, genreMap) {
   if (track.artists.some(a => {
     const genres = genreMap[a.id] || [];
-    return genres.some(g => SOUTH_ASIAN_GENRE_KEYWORDS.some(kw => g.toLowerCase().includes(kw)));
+    return genres.some(g => BLOCKED_GENRE_KEYWORDS.some(kw => g.toLowerCase().includes(kw)));
   })) return true;
   const textsToCheck = [
     track.name,
     track.album.name,
     ...track.artists.map(a => a.name),
   ];
-  if (textsToCheck.some(t => SOUTH_ASIAN_SCRIPT_RE.test(t))) return true;
-  return false;
+  return textsToCheck.some(t => HINDI_TAMIL_TELUGU_SCRIPT_RE.test(t));
 }
 
 export default async function handler(req, res) {
@@ -96,7 +97,7 @@ export default async function handler(req, res) {
     }
 
     const filtered = tracks
-      .filter(track => !isSouthAsianTrack(track, genreMap))
+      .filter(track => !isBlockedTrack(track, genreMap))
       .slice(0, limit);
 
     res.status(200).json({ ...tracksData, items: filtered });
