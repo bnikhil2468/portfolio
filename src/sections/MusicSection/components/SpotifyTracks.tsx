@@ -72,4 +72,3 @@ export const SpotifyTracks = ({ onLoaded }: SpotifyTracksProps) => {
     </div>
   );
 };
-

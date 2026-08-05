@@ -1,13 +1,13 @@
 export const HeaderContent = () => {
   return (
-    <div className="[align-items:normal] box-border caret-transparent flex flex-col justify-normal md:items-start md:flex-row md:justify-between">
+    <div className="box-border caret-transparent flex flex-col md:items-start md:flex-row md:justify-between">
       <div className="box-border caret-transparent">
         <div className="box-border caret-transparent blur-0">
           <h1 className="text-xl font-medium box-border caret-transparent leading-7 dark:text-zinc-50">
             Nikhil Bhimireddy
           </h1>
         </div>
-<div className="box-border caret-transparent blur-0">
+        <div className="box-border caret-transparent blur-0">
           <p className="box-border caret-transparent -mt-1 dark:text-zinc-300">
             Engineering and Neuroscience at{" "}
             <a
@@ -21,7 +21,7 @@ export const HeaderContent = () => {
           </p>
         </div>
       </div>
-      <div className="[align-items:normal] box-border caret-transparent gap-x-[normal] flex flex-col gap-y-[normal] mt-4 md:items-end md:gap-x-1 md:gap-y-1 md:mt-0">
+      <div className="box-border caret-transparent flex flex-col mt-4 md:items-end md:gap-x-1 md:gap-y-1 md:mt-0">
         <div className="box-border caret-transparent blur-0">
           <a
             href="https://www.linkedin.com/in/nikhil-bhimireddy-b688162b5/"
