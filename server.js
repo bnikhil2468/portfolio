@@ -82,7 +82,7 @@ app.get('/api/spotify/top-tracks', async (req, res) => {
     const fetchLimit = Math.min(limit * 8, 50);
     const token = await getAccessToken();
 
-    const response = await fetch(`https://api.spotify.com/v1/me/top/tracks?time_range=short_term&limit=${fetchLimit}`, {
+    const response = await fetch(`https://api.spotify.com/v1/me/top/tracks?time_range=long_term&limit=${fetchLimit}`, {
       headers: {
         'Authorization': `Bearer ${token}`,
       },

@@ -65,7 +65,7 @@ export default async function handler(req, res) {
 
     const { access_token } = await tokenResponse.json();
 
-    const tracksResponse = await fetch(`https://api.spotify.com/v1/me/top/tracks?time_range=short_term&limit=${fetchLimit}`, {
+    const tracksResponse = await fetch(`https://api.spotify.com/v1/me/top/tracks?time_range=long_term&limit=${fetchLimit}`, {
       headers: {
         'Authorization': `Bearer ${access_token}`,
       },
