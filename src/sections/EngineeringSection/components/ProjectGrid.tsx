@@ -58,17 +58,16 @@ export const ProjectGrid = () => {
         description="Platform reducing healthcare language and literacy barriers through live translation, interactive 3D pain mapping, and AI-powered patient support. Most Technical Project at OSU Hack OHI/O (Oct 2025)."
       />
       <ProjectCard
-        href="https://www.patientsafetytech.com/past-competitions/make-ohio"
-        image="/images/projects/tablet.png"
-        title="Timeley Tablet"
-        description="IoT-enabled smart pill dispenser with automated scheduling and alerts engineered to prevent accidental overdoses. Best Consumer-Driven Patient Safety Award at OSU Make OHI/O (Mar 2025)."
-      />
-      <ProjectCard
         href="https://github.com/Shubham-Gupta-coder/sheruta"
         image="/images/projects/sheruta.png"
         title="Sheruta.space"
         description="First integrated mental wellness platform for the Olentangy School District. AI-powered emotional support, journaling, mood tracking, and direct counselor access. 20,000+ users in pilot testing."
-        className="md:col-span-2 md:max-w-[calc(50%-0.75rem)] md:mx-auto"
+      />
+      <ProjectCard
+        href="https://www.patientsafetytech.com/past-competitions/make-ohio"
+        image="/images/projects/tablet.png"
+        title="Timeley Tablet"
+        description="IoT-enabled smart pill dispenser with automated scheduling and alerts engineered to prevent accidental overdoses. Best Consumer-Driven Patient Safety Award at OSU Make OHI/O (Mar 2025)."
       />
     </div>
   );
