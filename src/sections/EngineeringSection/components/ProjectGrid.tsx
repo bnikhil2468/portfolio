@@ -36,6 +36,11 @@ export const ProjectGrid = () => {
   return (
     <div className="box-border caret-transparent gap-x-6 grid grid-cols-[repeat(1,minmax(0px,1fr))] gap-y-6 md:grid-cols-[repeat(2,minmax(0px,1fr))]">
       <ProjectCard
+        image="/images/projects/kairoslabs.png"
+        title="KairosLabs"
+        description="ML decision-support software for organ procurement organizations that predicts transplant center acceptance and computes the optimal escalation timestamp for hard-to-place organs, addressing thousands of viable organs lost each year to slow, manual placement."
+      />
+      <ProjectCard
         href="https://www.aol.com/articles/meet-olentangy-orange-senior-developed-100218000.html"
         image="/images/projects/fnirs.png"
         title="Adjustable fNIRS Neuroimaging Cap"
