@@ -2,8 +2,8 @@ import { ContentWrapper } from "@/components/ContentWrapper";
 
 export const Container = () => {
   return (
-    <div className="box-border caret-transparent flex justify-center w-full px-4">
+    <main className="flex w-full justify-center px-4 sm:px-6">
       <ContentWrapper />
-    </div>
+    </main>
   );
 };

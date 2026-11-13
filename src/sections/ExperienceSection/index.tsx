@@ -1,14 +1,22 @@
-import { ExperienceList } from "@/sections/ExperienceSection/components/ExperienceList";
+import { Section, type Item } from "@/components/Section";
 
-export const ExperienceSection = () => {
-  return (
-    <div className="box-border caret-transparent">
-      <div className="box-border caret-transparent blur-0">
-        <h3 className="text-xs box-border caret-transparent tracking-[0.3px] leading-4 uppercase text-zinc-500 dark:text-zinc-400">
-          Recently
-        </h3>
-      </div>
-      <ExperienceList />
-    </div>
-  );
-};
+const experiences: Item[] = [
+  {
+    title: "Columbia University Medical School",
+    subtitle: "Neurobiology and Public Health Researcher",
+  },
+  {
+    title: "OSU Medical Center / NCH",
+    subtitle: "Computational Neuroscience and Neuroimaging Researcher",
+  },
+  {
+    title: "Columbus VA Hospital",
+    subtitle: "Urgent Care Assistant",
+  },
+  {
+    title: "Simply Neuroscience / BMC",
+    subtitle: "Medical Cartoonist",
+  },
+];
+
+export const ExperienceSection = () => <Section title="Recently" items={experiences} />;

@@ -1,13 +1,11 @@
 import { Container } from "@/components/Container";
 import { GridBackground } from "@/components/GridBackground";
-import { Footer } from "@/sections/Footer";
 
 export const App = () => {
   return (
-    <body className="text-zinc-950 dark:text-zinc-50 text-base not-italic normal-nums font-normal accent-auto box-border caret-transparent block tracking-[normal] leading-6 list-outside list-disc pointer-events-auto text-start indent-[0px] normal-case visible border-separate font-suisseintl transition-colors">
+    <div className="min-h-screen text-base leading-6 text-zinc-950 antialiased font-suisseintl dark:text-zinc-50">
       <GridBackground />
       <Container />
-      <Footer />
-    </body>
+    </div>
   );
 };

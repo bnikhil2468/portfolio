@@ -24,7 +24,7 @@ export const Footer = () => {
 
   return (
     <footer className="w-full mt-24">
-      <div className="flex items-center justify-between mx-auto max-w-lg md:max-w-4xl px-4 py-4">
+      <div className="flex items-center justify-between mx-auto max-w-2xl px-4 py-6 border-t border-zinc-200 dark:border-zinc-800">
         <p className="text-sm text-zinc-400">
           Carpe diem.
         </p>

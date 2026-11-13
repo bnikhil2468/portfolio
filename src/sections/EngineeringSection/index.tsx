@@ -1,15 +1,30 @@
-import { ProjectGrid } from "@/sections/EngineeringSection/components/ProjectGrid";
+import { Section, type Item } from "@/components/Section";
 
-export const EngineeringSection = () => {
-  return (
-    <div className="box-border caret-transparent blur-0">
-      <h2 className="text-lg font-medium box-border caret-transparent leading-7 dark:text-zinc-50">
-        Projects
-      </h2>
-      <p className="text-zinc-500 dark:text-zinc-400 box-border caret-transparent mb-4">
-        Building at the intersection of medicine and technology.
-      </p>
-      <ProjectGrid />
-    </div>
-  );
-};
+const projects: Item[] = [
+  {
+    title: "Kairos",
+    subtitle: "ML software that optimizes organ transplant placement.",
+  },
+  {
+    title: "Adjustable fNIRS Neuroimaging Cap",
+    subtitle: "A more inclusive and efficient neuroimaging alternative.",
+  },
+  {
+    title: "SCENT",
+    subtitle: "Handheld breath analyzer for early disease screening.",
+  },
+  {
+    title: "MediMoji",
+    subtitle: "Breaking down language and literacy barriers in healthcare.",
+  },
+  {
+    title: "Sheruta.space",
+    subtitle: "Mental wellness platform for students in the Olentangy School District.",
+  },
+  {
+    title: "Timeley Tablet",
+    subtitle: "Pill dispenser that optimizes medication schedules and prevents accidental overdoses.",
+  },
+];
+
+export const EngineeringSection = () => <Section title="Projects" items={projects} />;

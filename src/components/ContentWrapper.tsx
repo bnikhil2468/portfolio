@@ -1,17 +1,17 @@
 import { Header } from "@/sections/Header";
+import { CurrentlySection } from "@/sections/CurrentlySection";
 import { ExperienceSection } from "@/sections/ExperienceSection";
 import { EngineeringSection } from "@/sections/EngineeringSection";
-import { IllustrationsSection } from "@/sections/IllustrationsSection";
-import { MusicSection } from "@/sections/MusicSection";
+import { ConnectSection } from "@/sections/ConnectSection";
 
 export const ContentWrapper = () => {
   return (
-    <div className="box-border caret-transparent flex flex-col justify-start max-w-lg gap-y-10 w-full pt-8 md:max-w-4xl md:pt-24">
+    <div className="mx-auto flex w-full max-w-2xl flex-col gap-y-12 pt-14 pb-16 sm:gap-y-14 sm:pt-20 sm:pb-24 md:pt-24">
       <Header />
+      <CurrentlySection />
       <ExperienceSection />
       <EngineeringSection />
-      <IllustrationsSection />
-      <MusicSection />
+      <ConnectSection />
     </div>
   );
 };
