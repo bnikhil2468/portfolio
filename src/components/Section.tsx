@@ -37,7 +37,7 @@ const Row = ({ title, subtitle, href }: Item) => {
 export const Section = ({ title, items, children }: { title: string; items?: Item[]; children?: ReactNode }) => (
   <section>
     <h2 className="mb-4 text-center text-lg font-medium leading-7 text-zinc-950 dark:text-zinc-50">{title}</h2>
-    <div className="overflow-hidden rounded-2xl border border-zinc-200 bg-white/50 divide-y divide-zinc-200 dark:border-zinc-800 dark:bg-zinc-900/50 dark:divide-zinc-800">
+    <div className="overflow-hidden rounded-md border border-zinc-200 bg-white/50 divide-y divide-zinc-200 dark:border-zinc-800 dark:bg-zinc-900/50 dark:divide-zinc-800">
       {items?.map((item) => <Row key={item.title} {...item} />)}
       {children}
     </div>
