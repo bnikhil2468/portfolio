@@ -6,7 +6,7 @@ const projects: Item[] = [
     subtitle: "ML software that optimizes organ transplant placement",
   },
   {
-    title: "Adjustable fNIRS Neuroimaging Cap",
+    title: "fNIRS Neuroimaging Cap",
     subtitle: "A more inclusive and efficient neuroimaging alternative",
   },
   {
