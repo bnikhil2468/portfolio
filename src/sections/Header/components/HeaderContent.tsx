@@ -5,7 +5,7 @@ const links = [
 
 export const HeaderContent = () => {
   return (
-    <header className="flex flex-col items-center text-center">
+    <header className="flex flex-col items-center text-center motion-safe:animate-fade-up">
       <h1 className="text-[28px] font-medium leading-tight tracking-tight sm:text-3xl dark:text-zinc-50">
         Nikhil Bhimireddy
       </h1>

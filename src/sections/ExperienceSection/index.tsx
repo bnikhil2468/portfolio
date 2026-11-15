@@ -19,4 +19,4 @@ const experiences: Item[] = [
   },
 ];
 
-export const ExperienceSection = () => <Section title="Recently" items={experiences} />;
+export const ExperienceSection = () => <Section title="Recently" items={experiences} delay={160} />;

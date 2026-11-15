@@ -11,4 +11,4 @@ const current: Item[] = [
   },
 ];
 
-export const CurrentlySection = () => <Section title="Currently" items={current} />;
+export const CurrentlySection = () => <Section title="Currently" items={current} delay={80} />;

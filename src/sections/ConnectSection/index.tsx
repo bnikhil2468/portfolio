@@ -4,7 +4,7 @@ const contacts: Item[] = [
   {
     title: "Email",
     subtitle: "nikhil_bhimireddy@brown.edu",
-    href: "mailto:nikhil_bhimireddy@brown.edu",
+    copy: "nikhil_bhimireddy@brown.edu",
   },
   {
     title: "Book a call",
@@ -13,4 +13,4 @@ const contacts: Item[] = [
   },
 ];
 
-export const ConnectSection = () => <Section title="Connect" items={contacts} />;
+export const ConnectSection = () => <Section title="Connect" items={contacts} delay={320} />;

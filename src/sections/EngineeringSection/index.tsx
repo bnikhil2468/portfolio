@@ -27,4 +27,4 @@ const projects: Item[] = [
   },
 ];
 
-export const EngineeringSection = () => <Section title="Projects" items={projects} />;
+export const EngineeringSection = () => <Section title="Projects" items={projects} delay={240} />;
