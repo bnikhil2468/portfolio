@@ -7,7 +7,7 @@ const current: Item[] = [
   },
   {
     title: "Electrical Engineering @ Brown (PLME)",
-    subtitle: "On leave",
+    subtitle: "Class of 2030 · On leave",
   },
 ];
 
